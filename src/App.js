@@ -4,17 +4,30 @@ import Home from './container/Home';
 import Signin from './container/Signin';
 import Signup from './container/Signup';
 import PrivateRoute from './HOC/PrivateRoute';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { isUserLoggedIn } from './actions'
 
 function App() {
+
+  const dispatch = useDispatch();
+  //work as mapStatetoProps, useSelector Allows you to extract data from the Redux store state
+  const auth = useSelector(state =>state.auth);
+//useEfect work as componenet did mount
+useEffect(()=>{
+  if(!auth.authenticate){
+  dispatch(isUserLoggedIn())
+  }
+},[]);
+
+
   return (
     <>
-     <Router>
        <Switch>
          <PrivateRoute path='/' exact component={ Home }/>
          <Route path='/signin' component={ Signin }/>
          <Route path='/signup' component={ Signup } />
        </Switch>
-     </Router>
     </>
   );
 }

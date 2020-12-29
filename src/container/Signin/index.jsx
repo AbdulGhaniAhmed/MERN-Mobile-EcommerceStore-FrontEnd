@@ -1,11 +1,11 @@
-import React,{useEffect, useState}from "react";
+import React,{ useState }from "react";
 import Layout from "../../components/Layout";
 import { Form, Button, Container, Col, Row } from "react-bootstrap";
 import Input from '../../components/UI/Input';
 import {login} from '../../actions';
 import { useDispatch,useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { isUserLoggedIn } from '../../actions'
+
 
 /**
  * @author
@@ -18,15 +18,9 @@ const Signin = (props) => {
   const [password,setPassword]=useState();
   // const [error,setErrors] = useState();
 
+  //work as mapStatetoProps, useSelector Allows you to extract data from the Redux store state
   const auth = useSelector(state => state.auth)
   const dispatch = useDispatch();
-
-  //useEfect work as componenet did mount
-  useEffect(()=>{
-    if(!auth.authenticate){
-    dispatch(isUserLoggedIn())
-    }
-  },[]);
 
   const userLogin =(e)=>{
     e.preventDefault();
@@ -36,6 +30,7 @@ const Signin = (props) => {
     }
     dispatch(login(user));
   }
+  //stop user from going back to signin page after login  
   if(auth.authenticate){
     return <Redirect to='/' />
   }

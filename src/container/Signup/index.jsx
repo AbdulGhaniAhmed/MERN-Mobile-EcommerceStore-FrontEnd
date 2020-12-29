@@ -2,13 +2,25 @@ import React from "react";
 import Layout from "../../components/Layout";
 import { Form, Button, Container, Col, Row } from "react-bootstrap";
 import Input from "../../components/UI/Input";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 /**
  * @author
  * @function Signup
  **/
 
+ 
 const Signup = (props) => {
+
+  //work as mapStatetoProps, useSelector Allows you to extract data from the Redux store state
+  const auth = useSelector(state=>state.auth)
+
+  //stop user from going back to signin page after login  
+  if(auth.authenticate){
+    return <Redirect to='/' />
+  }
+
   return (
     <Layout>
       <Container>
