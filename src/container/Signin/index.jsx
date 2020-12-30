@@ -14,8 +14,8 @@ import { Redirect } from 'react-router-dom';
 
 const Signin = (props) => {
 
-  const [email,setEmail] = useState();
-  const [password,setPassword]=useState();
+  const [email,setEmail] = useState('');
+  const [password,setPassword]=useState('');
   // const [error,setErrors] = useState();
 
   //work as mapStatetoProps, useSelector Allows you to extract data from the Redux store state

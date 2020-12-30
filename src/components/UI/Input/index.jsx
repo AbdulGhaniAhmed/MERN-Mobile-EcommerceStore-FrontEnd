@@ -7,7 +7,7 @@ import { Form } from 'react-bootstrap'
 
 const Input = (props) => {
   return (
-    <Form.Group controlId="formBasicEmail">
+    <Form.Group>
       <Form.Label>{props.label}</Form.Label>
       <Form.Control 
       type={props.type} 
@@ -15,7 +15,7 @@ const Input = (props) => {
       value={props.value}
       onChange={props.onChange}
       />
-      <Form.Text className="text-muted">
+      <Form.Text>
         {props.errorMessage}
       </Form.Text>
     </Form.Group>

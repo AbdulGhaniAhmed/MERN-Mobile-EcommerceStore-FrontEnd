@@ -4,9 +4,9 @@ const initialState ={
     token: null,
     user:{
         firstname:'',
-        // lastname:'',
-        // email:'',
-        // picture:''
+        lastname:'',
+        email:'',
+        picture:''
     },
     authenticate:false,
     authenticating:false
@@ -30,6 +30,12 @@ export default (state=initialState,action) => {
                 authenticate:true,
                 authenticating:false
             }
+            break;
+        case authConstants.LOGOUT_REQUEST:
+            state={
+                ...initialState
+            }
+            break;
     }
     return state;
 }
