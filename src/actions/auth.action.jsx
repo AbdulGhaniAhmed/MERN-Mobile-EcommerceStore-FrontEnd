@@ -11,7 +11,7 @@ export const login = (user) =>{
         const res = await axiosInstance.post('/admin/signin',{
             ...user
         })
-        if(res.status === 200){
+        if(res.status === 201){
             const {token,user} = res.data;
             //here we are storing the token in local storage beacause if user reload the page so we can access to token from local-storage 
             localStorage.setItem('token',token);
@@ -55,3 +55,13 @@ export const isUserLoggedIn = () =>{
         }
     }
 }
+
+export const signout = () =>{
+    return async dispatch => {
+        localStorage.clear();
+        dispatch({
+            type: authConstants.LOGOUT_REQUEST,
+        });
+    }
+}
+
