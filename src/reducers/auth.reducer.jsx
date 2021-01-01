@@ -9,11 +9,14 @@ const initialState ={
         picture:''
     },
     authenticate:false,
-    authenticating:false
+    authenticating:false,
+    loading:false,
+    error:null,
+    message:''
 };
 
 export default (state=initialState,action) => {
-    console.log(action);
+    // console.log(action);
 
     switch(action.type){
         case authConstants.LOGIN_REQUEST:
@@ -33,7 +36,21 @@ export default (state=initialState,action) => {
             break;
         case authConstants.LOGOUT_REQUEST:
             state={
-                ...initialState
+                ...state,
+                loading:true
+            }
+            break;
+        case authConstants.LOGOUT_SUCCESS:
+            state={
+                ...initialState,
+                message:action.payload.message
+            }
+            break;
+        case authConstants.LOGOUT_FAILURE:
+            state={
+                ...state,
+                error:action.payload.error,
+                loading:false
             }
             break;
     }
