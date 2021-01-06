@@ -4,7 +4,7 @@ import { Form, Button, Container, Col, Row } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { signup } from "../../actions/user.action";
+import { signup } from "../../actions";
 
 /**
  * @author
