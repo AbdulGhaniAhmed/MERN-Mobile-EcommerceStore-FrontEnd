@@ -43,9 +43,9 @@ const Header = (props) => {
   }
 
   return(
-    <Container fluid style ={{padding:'0rem'}}>
-                                                             {/*zIndex in nabar usage */}
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{zIndex:'1'}}>
+                                                            //  zIndex in nabar usage 
+      <Navbar collapseOnSelect fixed='top' expand="lg" bg="dark" variant="dark" style={{zIndex:'1'}}>
+         <Container fluid>
         {/* <Navbar.Brand href="#home">Admin Dashboard</Navbar.Brand> */}
         <Link to='/' className='navbar-brand'>Admin Dashboard</Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -61,8 +61,8 @@ const Header = (props) => {
           </Nav>
           {auth.authenticate ? renderLoggedInLinks() : renderNoNLoggedInLinks()}
         </Navbar.Collapse>
+        </Container>
       </Navbar>
-    </Container>
     
    )
 
