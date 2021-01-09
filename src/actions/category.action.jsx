@@ -22,14 +22,34 @@ export const getAllCategory = () =>{
                 }
             })
         }else{
-            if(res.status === 400){
                 dispatch({
                     type: categoryConstants.GET_CATEGORY_FAILURE,
                     payload:{
                         error: res.data.error
                     }
-                })
-            }
+                })     
+        }
+    }
+}
+
+export const addCategory = (form) => {
+    return async dispatch => {
+        dispatch({type: categoryConstants.ADD_NEW_CATEGORY_REQUEST });
+        const res = await axiosInstance.post(`/category/create`,form);
+        if(res.status === 200){
+            dispatch({
+                type: categoryConstants.ADD_NEW_CATEGORY_SUCCESS,
+    // after adding category we want to show categories without refreshing page so we put payload in object form 
+    // further changes in reducer        
+                payload:{category: res.data.category}
+            })
+        }
+        else{
+            if(res.status === 400)
+            {dispatch({
+                type: categoryConstants.ADD_NEW_CATEGORY_FAILURE,
+                payload: res.data.error
+            });}
         }
     }
 }
